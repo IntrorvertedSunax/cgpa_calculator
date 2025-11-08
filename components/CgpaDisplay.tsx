@@ -16,8 +16,7 @@ const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, isSticky 
         return 'from-neutral-500 to-neutral-400';
     };
 
-    const baseCardClasses = "transition-all duration-300 ease-in-out";
-    const glassEffectClasses = "bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-xl shadow-neutral-300/10 dark:shadow-black/20";
+    const glassEffectClasses = "bg-gradient-to-br from-white/50 to-white/20 dark:from-neutral-900/50 dark:to-neutral-900/30 backdrop-blur-2xl border border-white/50 dark:border-white/10 shadow-xl shadow-black/10";
     
     if (isSticky) {
         return (
@@ -40,7 +39,7 @@ const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, isSticky 
     }
 
     return (
-        <div className={`${baseCardClasses} ${glassEffectClasses} rounded-2xl p-6 max-w-2xl mx-auto text-center`}>
+        <div className={`transition-all duration-300 ease-in-out ${glassEffectClasses} rounded-2xl p-6 max-w-2xl mx-auto text-center`}>
             <h2 className="text-lg font-medium text-neutral-500 dark:text-neutral-400">
                 Cumulative Grade Point Average (CGPA)
             </h2>

@@ -18,8 +18,7 @@ const SgpaDisplay: React.FC<SgpaDisplayProps> = ({ sgpa, offeredCredits, secured
         return 'from-neutral-500 to-neutral-400';
     };
 
-    const baseCardClasses = "transition-all duration-300 ease-in-out";
-    const glassEffectClasses = "bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-xl shadow-neutral-300/10 dark:shadow-black/20";
+    const glassEffectClasses = "bg-gradient-to-br from-white/50 to-white/20 dark:from-neutral-900/50 dark:to-neutral-900/30 backdrop-blur-2xl border border-white/50 dark:border-white/10 shadow-xl shadow-black/10";
 
     if (isSticky) {
         return (
@@ -53,14 +52,14 @@ const SgpaDisplay: React.FC<SgpaDisplayProps> = ({ sgpa, offeredCredits, secured
     }
 
     return (
-        <div className={`${baseCardClasses} ${glassEffectClasses} rounded-2xl p-6 max-w-2xl mx-auto text-center`}>
+        <div className={`transition-all duration-300 ease-in-out ${glassEffectClasses} rounded-2xl p-6 max-w-2xl mx-auto text-center`}>
             <h2 className="text-lg font-medium text-neutral-500 dark:text-neutral-400">
                 Grade Point Average (GPA)
             </h2>
             <p className={`text-6xl sm:text-7xl font-extrabold my-2 bg-gradient-to-br ${getSgpaGradient()} bg-clip-text text-transparent`}>
                 {sgpa.toFixed(3)}
             </p>
-            <div className="mt-4 pt-4 border-t border-neutral-300/50 dark:border-neutral-700/50 flex justify-center gap-x-6 sm:gap-x-8 text-sm text-neutral-500 dark:text-neutral-400">
+            <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex justify-center gap-x-6 sm:gap-x-8 text-sm text-neutral-500 dark:text-neutral-400">
                 <div>
                     <span className="block text-lg font-semibold text-neutral-700 dark:text-neutral-200">{offeredCredits.toFixed(2)}</span>
                     Credit Offered

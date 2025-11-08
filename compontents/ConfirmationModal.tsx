@@ -40,7 +40,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -49,11 +49,11 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl max-w-md w-full m-4 p-6 text-left transform transition-all"
+        className="relative bg-white/50 dark:bg-neutral-900/50 backdrop-blur-2xl border border-white/30 dark:border-neutral-700/50 rounded-2xl shadow-2xl max-w-md w-full p-6 text-left transform transition-all"
         tabIndex={-1}
       >
         <div className="sm:flex sm:items-start">
-          <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/30 sm:mx-0 sm:h-10 sm:w-10">
+          <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 dark:bg-red-500/20 sm:mx-0 sm:h-10 sm:w-10">
             <AlertTriangleIcon />
           </div>
           <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -71,14 +71,14 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           <button
             type="button"
             onClick={onConfirm}
-            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-neutral-900 sm:w-auto sm:text-sm transition-colors"
+            className="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-neutral-900 sm:w-auto sm:text-sm transition-colors"
           >
             Confirm
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="mt-3 w-full inline-flex justify-center rounded-md border border-neutral-300 dark:border-neutral-700 shadow-sm px-4 py-2 bg-white dark:bg-neutral-800 text-base font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-neutral-900 sm:mt-0 sm:w-auto sm:text-sm transition-colors"
+            className="mt-3 w-full inline-flex justify-center rounded-lg border border-neutral-300 dark:border-neutral-700 shadow-sm px-4 py-2 bg-white dark:bg-neutral-800 text-base font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-neutral-900 sm:mt-0 sm:w-auto sm:text-sm transition-colors"
           >
             Cancel
           </button>

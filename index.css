@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @keyframes blob-spin {
+    0% {
+      transform: translate(-20%, -10%) rotate(0deg);
+    }
+    50% {
+      transform: translate(-10%, 20%) rotate(180deg);
+    }
+    100% {
+      transform: translate(-20%, -10%) rotate(360deg);
+    }
+  }
+
+  @keyframes blob-spin-reverse {
+    0% {
+      transform: translate(20%, 20%) rotate(0deg);
+    }
+    50% {
+      transform: translate(-20%, -10%) rotate(-180deg);
+    }
+    100% {
+      transform: translate(20%, 20%) rotate(-360deg);
+    }
+  }
+}
