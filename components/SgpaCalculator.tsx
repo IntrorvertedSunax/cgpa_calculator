@@ -218,7 +218,7 @@ const SgpaCalculator: React.FC<SgpaCalculatorProps> = ({ sgpaState, setSgpaState
                      <select
                       value={selectedSemesterKey}
                       onChange={handleSemesterChange}
-                      className="w-full max-w-sm bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-lg py-2.5 px-3 text-sm focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition"
+                      className="w-full max-w-sm bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-xl py-3 px-4 text-base focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition"
                     >
                       <option value="">Select a Semester</option>
                       {Object.keys(SEMESTER_COURSES).map(key => (
@@ -232,17 +232,17 @@ const SgpaCalculator: React.FC<SgpaCalculatorProps> = ({ sgpaState, setSgpaState
                 <div className="space-y-3">
                   {courses.length > 0 ? (
                     courses.map(course => (
-                      <div key={course.code} className="grid grid-cols-[1fr_auto] sm:flex sm:items-center sm:justify-between gap-3 p-3 rounded-xl transition-all duration-300 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 shadow-sm hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-md hover:border-black/10 dark:hover:border-white/10">
+                      <div key={course.code} className="grid grid-cols-[1fr_auto] sm:flex sm:items-center sm:justify-between gap-3 p-4 rounded-xl transition-all duration-300 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 shadow-sm hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-md hover:border-black/10 dark:hover:border-white/10 active:scale-[0.99] active:transition-transform">
                         <div className="flex-grow min-w-0 pr-2">
-                          <p className="font-semibold text-neutral-800 dark:text-neutral-100 text-sm sm:text-base break-words">{course.name}</p>
-                          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                          <p className="font-semibold text-neutral-800 dark:text-neutral-100 text-sm sm:text-base break-words leading-tight">{course.name}</p>
+                          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                             {course.code} &bull; {course.credits} Credits
                           </p>
                         </div>
                         <select
                           value={grades[course.code] || 'N/A'}
                           onChange={e => handleGradeChange(course.code, e.target.value)}
-                          className="w-20 sm:w-32 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-lg py-2 px-2 sm:px-3 text-sm focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition self-center"
+                          className="w-24 sm:w-32 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-xl py-2.5 px-3 text-sm font-medium focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition self-center"
                         >
                           {GRADE_OPTIONS.map(grade => (
                             <option key={grade} value={grade}>
@@ -264,7 +264,7 @@ const SgpaCalculator: React.FC<SgpaCalculatorProps> = ({ sgpaState, setSgpaState
               <div className="mt-8 flex items-center justify-center">
                   <button
                       onClick={handleDownloadPdf}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950 focus-visible:ring-primary-500/80 transition-all duration-300 bg-gradient-to-br from-white/80 to-white/50 dark:from-neutral-800/80 dark:to-neutral-800/50 backdrop-blur-sm border border-white/80 dark:border-white/10 text-neutral-800 dark:text-neutral-100 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:py-3 font-bold rounded-xl w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950 focus-visible:ring-primary-500/80 transition-all duration-300 bg-gradient-to-br from-white/80 to-white/50 dark:from-neutral-800/80 dark:to-neutral-800/50 backdrop-blur-sm border border-white/80 dark:border-white/10 text-neutral-800 dark:text-neutral-100 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
                   >
                       <DownloadIcon />
                       Download Report

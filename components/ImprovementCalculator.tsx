@@ -189,7 +189,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
               <select
                 value={selectedSemesterKey}
                 onChange={handleSemesterChange}
-                className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all"
+                className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all"
               >
                 <option value="">Choose...</option>
                 {Object.keys(SEMESTER_COURSES).map(key => (
@@ -216,7 +216,8 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                     value={currentGpa}
                     onChange={(e) => handleGpaChange(e.target.value)}
                     placeholder="e.g. 2.50"
-                    className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all placeholder:text-neutral-400"
+                    inputMode="decimal"
+                    className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all placeholder:text-neutral-400"
                 />
                 </div>
             )}
@@ -237,7 +238,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                 <select 
                     onChange={handleAddCourse} 
                     value="" 
-                    className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all"
+                    className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all"
                     disabled={availableCourses.length === 0}
                 >
                     <option value="" disabled>
@@ -266,7 +267,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                 return (
                   <div 
                     key={course.code}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl border transition-all duration-200 bg-primary-50/50 dark:bg-primary-900/10 border-primary-200 dark:border-primary-800 animate-in fade-in slide-in-from-bottom-2"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 rounded-xl border transition-all duration-200 bg-primary-50/50 dark:bg-primary-900/10 border-primary-200 dark:border-primary-800 animate-in fade-in slide-in-from-bottom-2 active:scale-[0.99]"
                   >
                     <div className="flex-grow">
                         <p className="font-semibold text-primary-900 dark:text-primary-100 text-sm sm:text-base">{course.name}</p>
@@ -279,7 +280,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                              <select
                                 value={grade}
                                 onChange={(e) => handleGradeChange(course.code, e.target.value)}
-                                className="bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-800 dark:text-neutral-200 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2 outline-none shadow-sm min-w-[80px]"
+                                className="bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-800 dark:text-neutral-200 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 outline-none shadow-sm min-w-[80px]"
                             >
                                 {GRADE_OPTIONS.map(opt => (
                                     <option key={opt} value={opt}>{opt}</option>
@@ -288,7 +289,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                         </div>
                         <button 
                             onClick={() => handleRemoveCourse(course.code)}
-                            className="p-2 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 transition-colors rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
+                            className="p-2.5 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 transition-colors rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100 dark:active:bg-red-900/40"
                             title="Remove course"
                         >
                             <TrashIcon />

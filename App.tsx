@@ -120,18 +120,29 @@ const App: React.FC = () => {
   const [gliderStyle, setGliderStyle] = useState({});
 
   useEffect(() => {
-    let targetButton: HTMLButtonElement | null = null;
-    
-    if (activeView === 'sgpa') targetButton = sgpaButtonRef.current;
-    else if (activeView === 'cgpa') targetButton = cgpaButtonRef.current;
-    else if (activeView === 'improvement') targetButton = improvementButtonRef.current;
+    const updateGlider = () => {
+        let targetButton: HTMLButtonElement | null = null;
+        
+        if (activeView === 'sgpa') targetButton = sgpaButtonRef.current;
+        else if (activeView === 'cgpa') targetButton = cgpaButtonRef.current;
+        else if (activeView === 'improvement') targetButton = improvementButtonRef.current;
 
-    if (targetButton) {
-      setGliderStyle({
-        width: `${targetButton.offsetWidth}px`,
-        transform: `translateX(${targetButton.offsetLeft}px)`,
-      });
-    }
+        if (targetButton) {
+        setGliderStyle({
+            width: `${targetButton.offsetWidth}px`,
+            transform: `translateX(${targetButton.offsetLeft}px)`,
+        });
+        }
+    };
+
+    // Initial update
+    updateGlider();
+
+    // Update on resize to handle orientation changes on mobile
+    window.addEventListener('resize', updateGlider);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', updateGlider);
   }, [activeView]);
 
   const handleClearAllData = () => {
@@ -142,16 +153,16 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen text-neutral-800 dark:text-neutral-200 relative isolate">
+    <div className="min-h-screen text-neutral-800 dark:text-neutral-200 relative isolate overflow-x-hidden">
       <div className="absolute top-0 left-0 -z-10 h-full w-full bg-neutral-50 dark:bg-neutral-950">
-        <div className="absolute top-0 left-0 h-[700px] w-[700px] animate-[blob-spin_30s_linear_infinite] rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-3xl opacity-50 dark:opacity-30"></div>
-        <div className="absolute bottom-0 right-0 h-[700px] w-[700px] animate-[blob-spin-reverse_35s_linear_infinite] rounded-full bg-gradient-to-tl from-indigo-500/20 to-sky-500/20 blur-3xl opacity-50 dark:opacity-30"></div>
+        <div className="absolute top-0 left-0 h-[500px] w-[500px] sm:h-[700px] sm:w-[700px] animate-[blob-spin_30s_linear_infinite] rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-3xl opacity-50 dark:opacity-30"></div>
+        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] sm:h-[700px] sm:w-[700px] animate-[blob-spin-reverse_35s_linear_infinite] rounded-full bg-gradient-to-tl from-indigo-500/20 to-sky-500/20 blur-3xl opacity-50 dark:opacity-30"></div>
       </div>
 
       <Header theme={theme} onToggleTheme={handleThemeToggle} />
       <main className="container mx-auto px-4 py-4 sm:py-10">
         <div className="flex justify-center mb-6 sm:mb-8">
-          <div className="relative flex p-1 bg-black/5 dark:bg-white/5 backdrop-blur-md rounded-xl shadow-inner border border-white/30 dark:border-black/30 overflow-x-auto max-w-full no-scrollbar" role="tablist">
+          <div className="relative flex p-1 bg-black/5 dark:bg-white/5 backdrop-blur-md rounded-xl shadow-inner border border-white/30 dark:border-black/30 overflow-x-auto max-w-full no-scrollbar snap-x" role="tablist">
             <span 
                 className="absolute top-1 bottom-1 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] bg-gradient-to-br from-white/80 to-white/60 dark:from-neutral-800/90 dark:to-neutral-800/70 backdrop-blur-sm rounded-lg shadow-md border border-white dark:border-white/10"
                 style={gliderStyle}
@@ -161,7 +172,7 @@ const App: React.FC = () => {
             <button 
                 ref={sgpaButtonRef}
                 onClick={() => setActiveView('sgpa')}
-                className={`relative z-10 px-4 sm:px-5 py-2 text-sm sm:text-base font-semibold whitespace-nowrap rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/75 transition-colors duration-300 ${activeView === 'sgpa' ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'}`}
+                className={`relative z-10 px-4 sm:px-5 py-3 sm:py-2 text-sm sm:text-base font-semibold whitespace-nowrap rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/75 transition-colors duration-300 snap-center ${activeView === 'sgpa' ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'}`}
                 role="tab"
                 aria-selected={activeView === 'sgpa'}
                 aria-controls="sgpa-panel"
@@ -171,7 +182,7 @@ const App: React.FC = () => {
             <button 
                 ref={cgpaButtonRef}
                 onClick={() => setActiveView('cgpa')}
-                className={`relative z-10 px-4 sm:px-5 py-2 text-sm sm:text-base font-semibold whitespace-nowrap rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/75 transition-colors duration-300 ${activeView === 'cgpa' ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'}`}
+                className={`relative z-10 px-4 sm:px-5 py-3 sm:py-2 text-sm sm:text-base font-semibold whitespace-nowrap rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/75 transition-colors duration-300 snap-center ${activeView === 'cgpa' ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'}`}
                 role="tab"
                 aria-selected={activeView === 'cgpa'}
                 aria-controls="cgpa-panel"
@@ -181,7 +192,7 @@ const App: React.FC = () => {
             <button 
                 ref={improvementButtonRef}
                 onClick={() => setActiveView('improvement')}
-                className={`relative z-10 px-4 sm:px-5 py-2 text-sm sm:text-base font-semibold whitespace-nowrap rounded-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/75 transition-colors duration-300 ${activeView === 'improvement' ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'}`}
+                className={`relative z-10 px-4 sm:px-5 py-3 sm:py-2 text-sm sm:text-base font-semibold whitespace-nowrap rounded-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/75 transition-colors duration-300 snap-center ${activeView === 'improvement' ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'}`}
                 role="tab"
                 aria-selected={activeView === 'improvement'}
                 aria-controls="improvement-panel"

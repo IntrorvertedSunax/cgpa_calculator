@@ -196,9 +196,9 @@ const CgpaCalculator: React.FC<CgpaCalculatorProps> = ({ cgpaState, setCgpaState
 
             <div className="max-w-3xl mx-auto">
                 <div className={`mt-8 ${glassEffectClasses} rounded-2xl p-4 sm:p-6`}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
                         {semesterKeys.map((key, index) => (
-                            <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl transition-all duration-300 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 shadow-sm hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-md hover:border-black/10 dark:hover:border-white/10">
+                            <div key={key} className="flex items-center justify-between gap-4 p-4 rounded-xl transition-all duration-300 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 shadow-sm hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-md hover:border-black/10 dark:hover:border-white/10">
                                 <div>
                                     <p className="font-semibold text-neutral-800 dark:text-neutral-100">Semester {key}</p>
                                     <p className="text-sm text-neutral-500 dark:text-neutral-400">{semesterCreditMap[key]} Credits</p>
@@ -211,7 +211,7 @@ const CgpaCalculator: React.FC<CgpaCalculatorProps> = ({ cgpaState, setCgpaState
                                     value={gpas[key] || ''}
                                     onChange={e => handleGpaChange(key, e.target.value)}
                                     onKeyDown={e => handleKeyDown(e, index)}
-                                    className="w-24 sm:w-28 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-lg p-2 text-sm text-right focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition"
+                                    className="w-24 sm:w-28 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-xl py-3 px-3 text-sm text-right font-medium focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition"
                                     aria-label={`GPA for Semester ${key}`}
                                 />
                             </div>
@@ -223,7 +223,7 @@ const CgpaCalculator: React.FC<CgpaCalculatorProps> = ({ cgpaState, setCgpaState
                     <div className="mt-8 flex items-center justify-center">
                         <button
                             onClick={handleDownloadPdf}
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950 focus-visible:ring-primary-500/80 transition-all duration-300 bg-gradient-to-br from-white/80 to-white/50 dark:from-neutral-800/80 dark:to-neutral-800/50 backdrop-blur-sm border border-white/80 dark:border-white/10 text-neutral-800 dark:text-neutral-100 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:py-3 font-bold rounded-xl w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950 focus-visible:ring-primary-500/80 transition-all duration-300 bg-gradient-to-br from-white/80 to-white/50 dark:from-neutral-800/80 dark:to-neutral-800/50 backdrop-blur-sm border border-white/80 dark:border-white/10 text-neutral-800 dark:text-neutral-100 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
                         >
                             <DownloadIcon />
                             Download Report
