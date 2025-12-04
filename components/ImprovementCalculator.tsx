@@ -16,7 +16,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
 
   // Retrieve data specifically for the selected semester, or default to empty
   const currentSemesterData = useMemo(() => {
-     return semesterData[selectedSemesterKey] || { currentGpa: '', selectedCourses: {} };
+     return semesterData[selectedSemesterKey] || { currentGpa: '', selectedCourses: {} as Record<string, string> };
   }, [semesterData, selectedSemesterKey]);
 
   const { currentGpa, selectedCourses } = currentSemesterData;
@@ -268,7 +268,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                                 <select
                                     value={grade}
                                     onChange={(e) => handleGradeChange(course.code, e.target.value)}
-                                    className="h-10 w-20 bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 text-slate-800 dark:text-slate-200 text-sm font-semibold rounded-lg focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 block px-2 outline-none shadow-sm transition-all"
+                                    className="h-10 w-20 bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 text-slate-800 dark:text-slate-200 text-base font-semibold rounded-lg focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 block px-2 outline-none shadow-sm transition-all"
                                 >
                                     {GRADE_OPTIONS.map(opt => (
                                         <option key={opt} value={opt}>{opt}</option>
