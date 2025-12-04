@@ -3,7 +3,6 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { SEMESTER_COURSES, GRADE_POINTS, GRADE_OPTIONS } from '../constants';
 import { Course } from '../types';
 import ImprovementDisplay from './ImprovementDisplay';
-import PlusIcon from './icons/PlusIcon';
 import TrashIcon from './icons/TrashIcon';
 import { ImprovementState } from '../App';
 
@@ -150,6 +149,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
   };
 
   const glassEffectClasses = "bg-gradient-to-br from-white/50 to-white/20 dark:from-neutral-900/50 dark:to-neutral-900/30 backdrop-blur-2xl border border-white/50 dark:border-white/10 shadow-xl shadow-black/10";
+  const inputClasses = "w-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-xl py-3 px-4 text-base focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition";
   
   return (
     <section className={`transition-all duration-500 ease-out ${isMounted ? 'opacity-100 transform-none' : 'opacity-0 translate-y-4'}`}>
@@ -163,49 +163,40 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
       </div>
 
       {/* Sticky Header */}
-      <div className={`fixed top-0 left-0 right-0 z-20 py-4 bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-200/80 dark:border-neutral-800/80 transition-all duration-300 ease-in-out ${isSticky ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
+      <div className={`fixed top-0 left-0 right-0 z-20 py-4 bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-200/80 dark:border-neutral-800/80 transition-all duration-300 ease-in-out will-change-[transform,opacity] ${isSticky ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
          <ImprovementDisplay 
             {...calculationResult}
             isSticky={true}
         />
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-6 sm:space-y-8 mt-6 sm:mt-8">
+      <div className="max-w-3xl mx-auto mt-4 sm:mt-8">
         
-        {/* Input Section */}
+        {/* Main Card */}
         <div className={`${glassEffectClasses} rounded-2xl p-4 sm:p-6`}>
-          <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-100 mb-6 flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400">
-              <PlusIcon />
-            </span>
-            Calculate Improvement
-          </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+             {/* Semester Selection */}
+            <div className="space-y-1.5">
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 ml-1">
                 Select Semester
               </label>
               <select
                 value={selectedSemesterKey}
                 onChange={handleSemesterChange}
-                className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all"
+                className={inputClasses}
               >
                 <option value="">Choose...</option>
                 {Object.keys(SEMESTER_COURSES).map(key => (
                   <option key={key} value={key}>Semester {key}</option>
                 ))}
               </select>
-              {totalSemesterCredits > 0 && (
-                 <p className="text-xs text-neutral-500 dark:text-neutral-400 pl-1">
-                   Total Credits: <span className="font-semibold">{totalSemesterCredits}</span>
-                 </p>
-              )}
             </div>
 
+            {/* Current GPA Input */}
             {selectedSemesterKey && (
-                <div className="space-y-2 animate-in fade-in slide-in-from-left-4 duration-300">
-                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                <div className="space-y-1.5 animate-in fade-in slide-in-from-left-2 duration-300">
+                <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 ml-1">
                     Current GPA
                 </label>
                 <input
@@ -217,90 +208,87 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                     onChange={(e) => handleGpaChange(e.target.value)}
                     placeholder="e.g. 2.50"
                     inputMode="decimal"
-                    className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all placeholder:text-neutral-400"
+                    className={inputClasses}
                 />
                 </div>
             )}
           </div>
-        </div>
 
-        {/* Course Selection */}
-        {selectedSemesterKey && (
-          <div className={`${glassEffectClasses} rounded-2xl p-4 sm:p-6`}>
-            <h3 className="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-4">
-              Select Courses to Improve
-            </h3>
-            
-            <div className="mb-6">
-                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                    Add Course
-                </label>
-                <select 
-                    onChange={handleAddCourse} 
-                    value="" 
-                    className="w-full bg-white/50 dark:bg-black/20 border border-neutral-300 dark:border-neutral-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 outline-none transition-all"
-                    disabled={availableCourses.length === 0}
-                >
-                    <option value="" disabled>
-                        {availableCourses.length === 0 ? "All courses added" : "Select a course to improve..."}
-                    </option>
-                    {availableCourses.map(course => (
-                        <option key={course.code} value={course.code}>
-                            {course.name} ({course.code})
+          {selectedSemesterKey && (
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+                {/* Divider */}
+                <div className="h-px bg-black/10 dark:bg-white/10 my-6"></div>
+
+                {/* Add Course */}
+                <div className="mb-6 space-y-1.5">
+                    <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 ml-1">
+                        Add Course to Improve
+                    </label>
+                    <select 
+                        onChange={handleAddCourse} 
+                        value="" 
+                        className={inputClasses}
+                        disabled={availableCourses.length === 0}
+                    >
+                        <option value="" disabled>
+                            {availableCourses.length === 0 ? "All courses added" : "Select a course to improve..."}
                         </option>
-                    ))}
-                </select>
-            </div>
+                        {availableCourses.map(course => (
+                            <option key={course.code} value={course.code}>
+                                {course.name} ({course.code})
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-            <div className="space-y-3">
-               {Object.keys(selectedCourses).length === 0 && (
-                  <div className="text-center py-8 border-2 border-dashed border-neutral-200 dark:border-neutral-800 rounded-xl">
-                      <p className="text-neutral-500 dark:text-neutral-400 text-sm">No improved courses added yet.</p>
-                      <p className="text-neutral-400 dark:text-neutral-500 text-xs mt-1">Select a course from the dropdown above to begin.</p>
-                  </div>
-               )}
-
-              {Object.entries(selectedCourses).map(([courseCode, grade]) => {
-                const course = courses.find(c => c.code === courseCode);
-                if (!course) return null;
-
-                return (
-                  <div 
-                    key={course.code}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 rounded-xl border transition-all duration-200 bg-primary-50/50 dark:bg-primary-900/10 border-primary-200 dark:border-primary-800 animate-in fade-in slide-in-from-bottom-2 active:scale-[0.99]"
-                  >
-                    <div className="flex-grow">
-                        <p className="font-semibold text-primary-900 dark:text-primary-100 text-sm sm:text-base">{course.name}</p>
-                        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">{course.code} • {course.credits} Credits</p>
-                    </div>
-
-                    <div className="flex items-center justify-between sm:justify-end gap-3 mt-1 sm:mt-0">
-                        <div className="flex items-center gap-2">
-                             <span className="text-sm font-medium text-neutral-600 dark:text-neutral-300 hidden sm:inline">New Grade:</span>
-                             <select
-                                value={grade}
-                                onChange={(e) => handleGradeChange(course.code, e.target.value)}
-                                className="bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-800 dark:text-neutral-200 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 outline-none shadow-sm min-w-[80px]"
-                            >
-                                {GRADE_OPTIONS.map(opt => (
-                                    <option key={opt} value={opt}>{opt}</option>
-                                ))}
-                            </select>
+                {/* Courses List */}
+                <div className="space-y-3">
+                    {Object.keys(selectedCourses).length === 0 && (
+                        <div className="text-center py-8 border-2 border-dashed border-neutral-200/50 dark:border-neutral-800/50 rounded-xl">
+                            <p className="text-neutral-500 dark:text-neutral-400 text-sm">No improved courses added yet.</p>
+                            <p className="text-neutral-400 dark:text-neutral-500 text-xs mt-1">Select a course from the dropdown above to begin.</p>
                         </div>
-                        <button 
-                            onClick={() => handleRemoveCourse(course.code)}
-                            className="p-2.5 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 transition-colors rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100 dark:active:bg-red-900/40"
-                            title="Remove course"
+                    )}
+
+                    {Object.entries(selectedCourses).map(([courseCode, grade]) => {
+                        const course = courses.find(c => c.code === courseCode);
+                        if (!course) return null;
+
+                        return (
+                        <div 
+                            key={course.code}
+                            className="flex items-center justify-between p-4 rounded-2xl bg-slate-100 dark:bg-neutral-800/80 border border-slate-200 dark:border-neutral-700 shadow-sm"
                         >
-                            <TrashIcon />
-                        </button>
-                    </div>
-                  </div>
-                );
-              })}
+                            <div className="flex-grow min-w-0 pr-4">
+                                <h4 className="font-bold text-slate-800 dark:text-slate-100 text-base">{course.name}</h4>
+                                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">{course.code} • {course.credits} Credits</p>
+                            </div>
+
+                            <div className="flex items-center gap-3">
+                                <select
+                                    value={grade}
+                                    onChange={(e) => handleGradeChange(course.code, e.target.value)}
+                                    className="h-10 w-20 bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 text-slate-800 dark:text-slate-200 text-sm font-semibold rounded-lg focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 block px-2 outline-none shadow-sm transition-all"
+                                >
+                                    {GRADE_OPTIONS.map(opt => (
+                                        <option key={opt} value={opt}>{opt}</option>
+                                    ))}
+                                </select>
+                                <button 
+                                    onClick={() => handleRemoveCourse(course.code)}
+                                    className="p-2 text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
+                                    title="Remove course"
+                                >
+                                    <TrashIcon className="w-5 h-5" />
+                                </button>
+                            </div>
+                        </div>
+                        );
+                    })}
+                </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );

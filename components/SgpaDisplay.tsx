@@ -34,11 +34,11 @@ const SgpaDisplay: React.FC<SgpaDisplayProps> = ({ sgpa, offeredCredits, secured
                                 Offered
                             </div>
                             <div>
-                                <span className="block font-semibold text-neutral-700 dark:text-neutral-200">{securedCredits.toFixed(2)}</span>
+                                <span className="block font-semibold text-green-600 dark:text-green-400">{securedCredits.toFixed(2)}</span>
                                 Secured
                             </div>
                             <div>
-                                <span className="block font-semibold text-neutral-700 dark:text-neutral-200">{totalPoints.toFixed(2)}</span>
+                                <span className="block font-semibold text-indigo-600 dark:text-indigo-400">{totalPoints.toFixed(2)}</span>
                                 Points
                             </div>
                         </div>
@@ -65,11 +65,11 @@ const SgpaDisplay: React.FC<SgpaDisplayProps> = ({ sgpa, offeredCredits, secured
                     Credit Offered
                 </div>
                 <div>
-                    <span className="block text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-200">{securedCredits.toFixed(2)}</span>
+                    <span className="block text-base sm:text-lg font-semibold text-green-600 dark:text-green-400">{securedCredits.toFixed(2)}</span>
                     Credit Secured
                 </div>
                  <div>
-                    <span className="block text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-200">{totalPoints.toFixed(2)}</span>
+                    <span className="block text-base sm:text-lg font-semibold text-indigo-600 dark:text-indigo-400">{totalPoints.toFixed(2)}</span>
                     Points Secured
                 </div>
             </div>

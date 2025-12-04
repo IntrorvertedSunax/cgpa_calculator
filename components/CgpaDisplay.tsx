@@ -4,10 +4,12 @@ import React from 'react';
 interface CgpaDisplayProps {
   cgpa: number;
   totalCredits: number;
+  totalPoints: number;
+  semestersCount: number;
   isSticky: boolean;
 }
 
-const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, isSticky }) => {
+const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, totalPoints, semestersCount, isSticky }) => {
     const getCgpaGradient = () => {
         if (cgpa >= 3.75) return 'from-green-500 to-green-400';
         if (cgpa >= 3.25) return 'from-sky-500 to-sky-400';
@@ -26,9 +28,20 @@ const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, isSticky 
                         <h2 className="text-sm sm:text-base font-semibold text-neutral-700 dark:text-neutral-200">
                             Cumulative Grade Point Average (CGPA)
                         </h2>
-                        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                            Based on <span className="font-semibold text-primary-500 dark:text-primary-400">{totalCredits.toFixed(2)}</span> total credits.
-                        </p>
+                        <div className="flex gap-x-4 sm:gap-x-6 text-xs sm:text-sm text-center text-neutral-500 dark:text-neutral-400 mt-1.5">
+                            <div>
+                                <span className="block font-semibold text-neutral-700 dark:text-neutral-200">{semestersCount}</span>
+                                Semesters
+                            </div>
+                            <div>
+                                <span className="block font-semibold text-green-600 dark:text-green-400">{totalCredits.toFixed(2)}</span>
+                                Credits
+                            </div>
+                            <div>
+                                <span className="block font-semibold text-indigo-600 dark:text-indigo-400">{totalPoints.toFixed(2)}</span>
+                                Points
+                            </div>
+                        </div>
                     </div>
                     <p className={`text-4xl font-bold bg-gradient-to-br ${getCgpaGradient()} bg-clip-text text-transparent flex-shrink-0`}>
                         {cgpa.toFixed(3)}
@@ -46,9 +59,21 @@ const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, isSticky 
             <p className={`text-6xl sm:text-7xl font-extrabold my-2 bg-gradient-to-br ${getCgpaGradient()} bg-clip-text text-transparent`}>
                 {cgpa.toFixed(3)}
             </p>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                Based on <span className="font-semibold text-primary-500 dark:text-primary-400">{totalCredits.toFixed(2)}</span> total credits.
-            </p>
+            
+            <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 grid grid-cols-3 gap-2 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
+                <div>
+                    <span className="block text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-200">{semestersCount}</span>
+                    Semesters
+                </div>
+                <div>
+                    <span className="block text-base sm:text-lg font-semibold text-green-600 dark:text-green-400">{totalCredits.toFixed(2)}</span>
+                    Total Credits
+                </div>
+                 <div>
+                    <span className="block text-base sm:text-lg font-semibold text-indigo-600 dark:text-indigo-400">{totalPoints.toFixed(2)}</span>
+                    Total Points
+                </div>
+            </div>
         </div>
     );
 };
