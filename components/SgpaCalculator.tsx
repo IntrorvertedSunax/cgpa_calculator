@@ -87,10 +87,11 @@ const SgpaCalculator: React.FC<SgpaCalculatorProps> = ({ sgpaState, setSgpaState
   
   const handleSemesterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const newSemesterKey = e.target.value;
-      setSgpaState({
-        selectedSemesterKey: newSemesterKey,
-        grades: {}
-      });
+      setSgpaState(prev => ({
+        ...prev,
+        selectedSemesterKey: newSemesterKey
+        // We do not reset grades here, allowing data persistence across semester switches
+      }));
   };
 
   const handleDownloadPdf = () => {
@@ -191,7 +192,7 @@ const SgpaCalculator: React.FC<SgpaCalculatorProps> = ({ sgpaState, setSgpaState
 
   return (
     <section className={`transition-all duration-500 ease-out ${isMounted ? 'opacity-100 transform-none' : 'opacity-0 translate-y-4'}`}>
-        <div ref={displayElementRef} className="py-4">
+        <div ref={displayElementRef} className="py-2 sm:py-4">
             <SgpaDisplay 
                 sgpa={semesterStats.sgpa}
                 offeredCredits={semesterStats.offeredCredits}
@@ -212,7 +213,7 @@ const SgpaCalculator: React.FC<SgpaCalculatorProps> = ({ sgpaState, setSgpaState
         </div>
 
         <div className="max-w-3xl mx-auto">
-            <div className={`mt-8 ${glassEffectClasses} rounded-2xl p-4 sm:p-6`}>
+            <div className={`mt-4 sm:mt-8 ${glassEffectClasses} rounded-2xl p-4 sm:p-6`}>
                 <div className="flex justify-center mb-6">
                      <select
                       value={selectedSemesterKey}
@@ -231,17 +232,17 @@ const SgpaCalculator: React.FC<SgpaCalculatorProps> = ({ sgpaState, setSgpaState
                 <div className="space-y-3">
                   {courses.length > 0 ? (
                     courses.map(course => (
-                      <div key={course.code} className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl transition-all duration-300 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 shadow-sm hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-md hover:border-black/10 dark:hover:border-white/10">
-                        <div className="flex-grow">
-                          <p className="font-semibold text-neutral-800 dark:text-neutral-100">{course.name}</p>
-                          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                      <div key={course.code} className="grid grid-cols-[1fr_auto] sm:flex sm:items-center sm:justify-between gap-3 p-3 rounded-xl transition-all duration-300 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 shadow-sm hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-md hover:border-black/10 dark:hover:border-white/10">
+                        <div className="flex-grow min-w-0 pr-2">
+                          <p className="font-semibold text-neutral-800 dark:text-neutral-100 text-sm sm:text-base break-words">{course.name}</p>
+                          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
                             {course.code} &bull; {course.credits} Credits
                           </p>
                         </div>
                         <select
                           value={grades[course.code] || 'N/A'}
                           onChange={e => handleGradeChange(course.code, e.target.value)}
-                          className="w-full sm:w-32 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition"
+                          className="w-20 sm:w-32 bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-black/10 dark:border-white/10 shadow-inner rounded-lg py-2 px-2 sm:px-3 text-sm focus:ring-2 focus:ring-primary-500/80 focus:border-primary-500 outline-none transition self-center"
                         >
                           {GRADE_OPTIONS.map(grade => (
                             <option key={grade} value={grade}>

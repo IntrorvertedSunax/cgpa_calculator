@@ -52,24 +52,24 @@ const SgpaDisplay: React.FC<SgpaDisplayProps> = ({ sgpa, offeredCredits, secured
     }
 
     return (
-        <div className={`transition-all duration-300 ease-in-out ${glassEffectClasses} rounded-2xl p-6 max-w-2xl mx-auto text-center`}>
-            <h2 className="text-lg font-medium text-neutral-500 dark:text-neutral-400">
+        <div className={`transition-all duration-300 ease-in-out ${glassEffectClasses} rounded-2xl p-4 sm:p-6 max-w-2xl mx-auto text-center`}>
+            <h2 className="text-base sm:text-lg font-medium text-neutral-500 dark:text-neutral-400">
                 Grade Point Average (GPA)
             </h2>
-            <p className={`text-6xl sm:text-7xl font-extrabold my-2 bg-gradient-to-br ${getSgpaGradient()} bg-clip-text text-transparent`}>
+            <p className={`text-5xl sm:text-7xl font-extrabold my-2 bg-gradient-to-br ${getSgpaGradient()} bg-clip-text text-transparent`}>
                 {sgpa.toFixed(3)}
             </p>
-            <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex justify-center gap-x-6 sm:gap-x-8 text-sm text-neutral-500 dark:text-neutral-400">
+            <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 grid grid-cols-3 gap-2 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
                 <div>
-                    <span className="block text-lg font-semibold text-neutral-700 dark:text-neutral-200">{offeredCredits.toFixed(2)}</span>
+                    <span className="block text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-200">{offeredCredits.toFixed(2)}</span>
                     Credit Offered
                 </div>
                 <div>
-                    <span className="block text-lg font-semibold text-neutral-700 dark:text-neutral-200">{securedCredits.toFixed(2)}</span>
+                    <span className="block text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-200">{securedCredits.toFixed(2)}</span>
                     Credit Secured
                 </div>
                  <div>
-                    <span className="block text-lg font-semibold text-neutral-700 dark:text-neutral-200">{totalPoints.toFixed(2)}</span>
+                    <span className="block text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-200">{totalPoints.toFixed(2)}</span>
                     Points Secured
                 </div>
             </div>

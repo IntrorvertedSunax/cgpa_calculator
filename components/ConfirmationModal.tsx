@@ -49,7 +49,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white/50 dark:bg-neutral-900/50 backdrop-blur-2xl border border-white/30 dark:border-neutral-700/50 rounded-2xl shadow-2xl max-w-md w-full p-6 text-left transform transition-all"
+        className="relative bg-white/95 dark:bg-neutral-900/95 backdrop-blur-2xl border border-white/30 dark:border-neutral-700/50 rounded-2xl shadow-2xl max-w-md w-full p-6 text-left transform transition-all"
         tabIndex={-1}
       >
         <div className="sm:flex sm:items-start">
@@ -61,7 +61,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
               {title}
             </h3>
             <div className="mt-2">
-              <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              <p className="text-sm text-neutral-600 dark:text-neutral-300">
                 {children}
               </p>
             </div>
