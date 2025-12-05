@@ -8,6 +8,7 @@ import ConfirmationModal from './components/ConfirmationModal';
 import ElectricIcon from './components/icons/ElectricIcon';
 import TrendingUpIcon from './components/icons/TrendingUpIcon';
 import TrashIcon from './components/icons/TrashIcon';
+import LinkedInIcon from './components/icons/LinkedInIcon';
 
 type View = 'sgpa' | 'cgpa' | 'improvement';
 
@@ -154,14 +155,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen text-neutral-800 dark:text-neutral-200 relative isolate">
-      <div className="absolute top-0 left-0 -z-10 h-full w-full bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-screen text-neutral-800 dark:text-neutral-200 relative isolate flex flex-col">
+      <div className="fixed top-0 left-0 -z-10 h-full w-full bg-neutral-50 dark:bg-neutral-950">
         <div className="absolute top-0 left-0 h-[500px] w-[500px] sm:h-[700px] sm:w-[700px] animate-[blob-spin_30s_linear_infinite] rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-3xl opacity-50 dark:opacity-30"></div>
         <div className="absolute bottom-0 right-0 h-[500px] w-[500px] sm:h-[700px] sm:w-[700px] animate-[blob-spin-reverse_35s_linear_infinite] rounded-full bg-gradient-to-tl from-indigo-500/20 to-sky-500/20 blur-3xl opacity-50 dark:opacity-30"></div>
       </div>
 
       <Header theme={theme} onToggleTheme={handleThemeToggle} />
-      <main className="container mx-auto px-4 py-4 sm:py-10">
+      <main className="container mx-auto px-4 py-4 sm:py-10 flex-grow">
         
         {/* Department Title - Moved here and styled for better visibility and mobile alignment */}
         <div className="text-center mb-8 px-4">
@@ -223,7 +224,7 @@ const App: React.FC = () => {
           {activeView === 'improvement' && <ImprovementCalculator improvementState={improvementState} setImprovementState={setImprovementState} />}
         </div>
 
-        <div className="flex justify-center mt-12 mb-4">
+        <div className="flex justify-center mt-8 mb-4">
             <button
                 onClick={() => setIsModalOpen(true)}
                 className="group flex items-center justify-center gap-2 px-8 py-3 bg-white/50 dark:bg-red-900/10 hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 font-bold rounded-xl border border-red-200 dark:border-red-800/50 backdrop-blur-sm transition-all duration-200 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
@@ -233,8 +234,32 @@ const App: React.FC = () => {
             </button>
         </div>
       </main>
-      <footer className="text-center py-8 text-neutral-500 dark:text-neutral-400 text-sm">
-        <p>Developed with passion by Introverted Sunax</p>
+
+      <footer className="mt-auto w-full border-t border-neutral-200/60 dark:border-neutral-800/60 bg-white/40 dark:bg-black/20 backdrop-blur-xl py-6 relative z-10">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex flex-col items-center md:items-start gap-1">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium text-center md:text-left">
+                    Developed with passion by <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent font-bold">Introverted Sunax</span>
+                </p>
+                <div className="text-[10px] text-neutral-400 dark:text-neutral-500 uppercase tracking-widest font-bold opacity-80">
+                   GSTU • EEE
+                </div>
+            </div>
+
+            <a 
+              href="https://linkedin.com/in/hossain-sumon"
+              target="_blank"
+              rel="noopener noreferrer" 
+              className="group relative px-5 py-2.5 rounded-full bg-white/50 dark:bg-neutral-800/50 hover:bg-white/80 dark:hover:bg-neutral-800 backdrop-blur-sm border border-neutral-200/80 dark:border-neutral-700/80 shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-2.5"
+            >
+              <div className="text-neutral-400 group-hover:text-[#0A66C2] transition-colors duration-300">
+                 <LinkedInIcon className="w-4 h-4" />
+              </div>
+              <span className="text-sm font-semibold text-neutral-600 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors duration-300">
+                Message Me
+              </span>
+            </a>
+        </div>
       </footer>
 
       <ConfirmationModal
