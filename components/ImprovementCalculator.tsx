@@ -4,7 +4,14 @@ import { SEMESTER_COURSES, GRADE_POINTS, GRADE_OPTIONS } from '../constants';
 import { Course } from '../types';
 import ImprovementDisplay from './ImprovementDisplay';
 import TrashIcon from './icons/TrashIcon';
-import { ImprovementState } from '../App';
+
+export interface ImprovementState {
+  selectedSemesterKey: string;
+  semesterData: Record<string, {
+    currentGpa: string;
+    selectedCourses: Record<string, string>;
+  }>;
+}
 
 interface ImprovementCalculatorProps {
   improvementState: ImprovementState;
@@ -73,7 +80,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
 
     Object.entries(selectedCourses).forEach(([courseCode, grade]) => {
       const course = courses.find(c => c.code === courseCode);
-      const gradePoint = GRADE_POINTS[grade];
+      const gradePoint = GRADE_POINTS[grade as string];
       
       if (course && gradePoint !== undefined) {
         improvedCoursePoints += course.credits * gradePoint;
@@ -222,7 +229,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                 {/* Add Course */}
                 <div className="mb-6 space-y-1.5">
                     <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 ml-1">
-                        Add Course to Improve
+                        Add Retake Course
                     </label>
                     <select 
                         onChange={handleAddCourse} 
@@ -231,7 +238,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                         disabled={availableCourses.length === 0}
                     >
                         <option value="" disabled>
-                            {availableCourses.length === 0 ? "All courses added" : "Select a course to improve..."}
+                            {availableCourses.length === 0 ? "All courses added" : "Select Retake Course"}
                         </option>
                         {availableCourses.map(course => (
                             <option key={course.code} value={course.code}>
@@ -245,7 +252,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
                 <div className="space-y-3">
                     {Object.keys(selectedCourses).length === 0 && (
                         <div className="text-center py-8 border-2 border-dashed border-neutral-200/50 dark:border-neutral-800/50 rounded-xl">
-                            <p className="text-neutral-500 dark:text-neutral-400 text-sm">No improved courses added yet.</p>
+                            <p className="text-neutral-500 dark:text-neutral-400 text-sm">No retake courses added yet.</p>
                             <p className="text-neutral-400 dark:text-neutral-500 text-xs mt-1">Select a course from the dropdown above to begin.</p>
                         </div>
                     )}

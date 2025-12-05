@@ -38,7 +38,7 @@ const ImprovementDisplay: React.FC<ImprovementDisplayProps> = ({
                     </h2>
                      <div className="flex gap-x-4 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                         <span>New Points: <span className="font-semibold text-neutral-700 dark:text-neutral-200">{updatedSecuredPoints.toFixed(2)}</span></span>
-                        <span className="text-green-600 dark:text-green-400">Imp: +{improvedCoursePoints.toFixed(2)}</span>
+                        <span className="text-green-600 dark:text-green-400">Improvement: +{improvedCoursePoints.toFixed(2)}</span>
                     </div>
                 </div>
                 <p className={`text-4xl font-bold bg-gradient-to-br ${getGpaGradient(updatedGpa)} bg-clip-text text-transparent flex-shrink-0`}>
@@ -58,7 +58,7 @@ const ImprovementDisplay: React.FC<ImprovementDisplayProps> = ({
             {updatedGpa.toFixed(3)}
         </p>
         <p className="text-xs sm:text-sm text-neutral-400 dark:text-neutral-500 mb-1">
-            Adding <span className="font-semibold text-neutral-600 dark:text-neutral-300">{improvedCreditsCount}</span> credits of improved grades.
+            Adding <span className="font-semibold text-neutral-600 dark:text-neutral-300">{improvedCreditsCount}</span> credits of retake grades.
         </p>
 
         <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 grid grid-cols-3 gap-2 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">

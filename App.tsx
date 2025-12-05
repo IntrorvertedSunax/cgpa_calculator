@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import Header from './components/Header';
 import SgpaCalculator from './components/SgpaCalculator';
@@ -207,7 +208,7 @@ const App: React.FC = () => {
                 aria-controls="improvement-panel"
             >
                 <TrendingUpIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                Improvement
+                Retake GPA
             </button>
           </div>
         </div>
