@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import Header from './components/Header';
 import SgpaCalculator from './components/SgpaCalculator';
@@ -238,8 +237,8 @@ const App: React.FC = () => {
       <footer className="mt-auto w-full border-t border-neutral-200/60 dark:border-neutral-800/60 bg-white/40 dark:bg-black/20 backdrop-blur-xl py-6 relative z-10">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-col items-center md:items-start gap-1">
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium text-center md:text-left">
-                    Developed with passion by <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent font-bold">Introverted Sunax</span>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium text-center md:text-left flex items-center gap-1.5 flex-wrap justify-center">
+                    Developed with passion by <span className="font-signature text-xl bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent font-bold pt-1">Introverted Sunax</span>
                 </p>
                 <div className="text-[10px] text-neutral-400 dark:text-neutral-500 uppercase tracking-widest font-bold opacity-80">
                    GSTU • EEE

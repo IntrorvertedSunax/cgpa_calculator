@@ -182,7 +182,7 @@ const ImprovementCalculator: React.FC<ImprovementCalculatorProps> = ({ improveme
         {/* Main Card */}
         <div className={`${glassEffectClasses} rounded-2xl p-4 sm:p-6`}>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="flex flex-col gap-4 mb-6">
              {/* Semester Selection */}
             <div className="space-y-1.5">
               <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 ml-1">

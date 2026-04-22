@@ -161,7 +161,7 @@ const CgpaCalculator: React.FC<CgpaCalculatorProps> = ({ cgpaState, setCgpaState
         doc.setFontSize(28);
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(79, 70, 229); // primary-600
-        doc.text(cgpaData.cgpa.toFixed(3), rightAlignX, summaryBoxY + 25, { align: 'right' });
+        doc.text(cgpaData.cgpa.toFixed(2), rightAlignX, summaryBoxY + 25, { align: 'right' });
 
         const pageCount = (doc as any).internal.getNumberOfPages();
         for (let i = 1; i <= pageCount; i++) {

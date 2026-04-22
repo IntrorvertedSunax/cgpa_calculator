@@ -9,6 +9,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        signature: ['Dancing Script', 'cursive'],
       },
       colors: {
         primary: {

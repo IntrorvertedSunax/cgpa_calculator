@@ -44,7 +44,7 @@ const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, totalPoin
                         </div>
                     </div>
                     <p className={`text-4xl font-bold bg-gradient-to-br ${getCgpaGradient()} bg-clip-text text-transparent flex-shrink-0`}>
-                        {cgpa.toFixed(3)}
+                        {cgpa.toFixed(2)}
                     </p>
                 </div>
             </div>
@@ -57,7 +57,7 @@ const CgpaDisplay: React.FC<CgpaDisplayProps> = ({ cgpa, totalCredits, totalPoin
                 Cumulative Grade Point Average (CGPA)
             </h2>
             <p className={`text-6xl sm:text-7xl font-extrabold my-2 bg-gradient-to-br ${getCgpaGradient()} bg-clip-text text-transparent`}>
-                {cgpa.toFixed(3)}
+                {cgpa.toFixed(2)}
             </p>
             
             <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 grid grid-cols-3 gap-2 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
